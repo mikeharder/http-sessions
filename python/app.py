@@ -23,7 +23,6 @@ container_client = service_client.get_container_client(container_name)
 
 blobs_list: list[BlobProperties] = sorted(container_client.list_blobs(), key=lambda b: b.size)
 for blob in blobs_list:
-    blob_client = container_client.get_blob_client(blob.name)
     blob_sas = generate_blob_sas(account_name, container_name, blob.name, account_key=account_key, permission=BlobSasPermissions(read=True), expiry=datetime(2023, 1, 1))
     blob_url = f'https://{account_name}.blob.core.windows.net/{container_name}/{blob.name}?{blob_sas}'
     with requests.Session() as session:

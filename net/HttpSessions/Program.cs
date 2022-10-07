@@ -30,7 +30,7 @@ namespace HttpSessions
 
         private static async Task<TimeSpan> Download(HttpClient client, string name, long? size, Uri sasUri)
         {
-            Console.WriteLine($"Downloading {size} bytes from  blob '{name}'...");
+            Console.WriteLine($"Downloading {size} bytes from blob '{name}'...");
             using (var countingStream = new CountingStream())
             {
                 var sw = Stopwatch.StartNew();
